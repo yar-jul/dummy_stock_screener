@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  db:
+    image: "postgres:15-alpine"
+    container_name: dss_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    networks:
+      - network
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  pgadmin:
+    container_name: dss_pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    depends_on:
+      - db
+    ports:
+      - "5050:80"
+    networks:
+      - network
+    volumes:
+      - pgadmin:/root/.pgadmin
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile_api
+    container_name: dss_backend
+    image: dss_backend:1
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    networks:
+      - network
+
+networks:
+  network:
+
+volumes:
+  db_data:
+  pgadmin:
