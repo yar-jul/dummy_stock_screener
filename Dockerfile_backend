@@ -7,8 +7,7 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_HOME='/usr/local' \
     POETRY_VIRTUALENVS_CREATE=false \
     POETRY_CACHE_DIR='/var/cache/pypoetry' \
-    PYTHONPATH='/app/src' \
-    IN_DOCKER=true
+    PYTHONPATH='/app/src'
 RUN curl -sSL https://install.python-poetry.org | python -
 WORKDIR /app/
 COPY Makefile .env poetry.lock pyproject.toml /app/

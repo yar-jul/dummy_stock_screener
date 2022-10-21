@@ -12,13 +12,19 @@ run: ## run all
 
 .PHONY: run-in-docker
 run-in-docker: ## run all
-	make -j 2 run-api run-generator-in-docker
+	make -j 2 run-api-in-docker run-generator-in-docker
 
 .PHONY: run-api
 run-api: ## run api
 	poetry run gunicorn --reload --bind $(HOST):$(PORT) \
 	--worker-class uvicorn.workers.UvicornWorker \
 	--workers $(WORKERS) --log-level $(LOG_LEVEL) --chdir backend/src api:app
+
+.PHONY: run-api-in-docker
+run-api-in-docker: ## run api in docker
+	poetry run gunicorn --bind $(HOST):$(PORT) \
+	--worker-class uvicorn.workers.UvicornWorker \
+	--workers $(WORKERS) --log-level $(LOG_LEVEL) --chdir src api:app
 
 .PHONY: run-generator
 run-generator: ## run data generator
