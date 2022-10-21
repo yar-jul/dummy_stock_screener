@@ -5,8 +5,11 @@ services:
     image: "postgres:15-alpine"
     container_name: dss_db
     restart: always
-    env_file:
-      - .env
+    environment:
+      POSTGRES_SERVER: ${POSTGRES_SERVER}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     networks:
@@ -31,13 +34,13 @@ services:
   backend:
     build:
       context: .
-      dockerfile: backend/Dockerfile_api
+      dockerfile: Dockerfile_backend
     container_name: dss_backend
     image: dss_backend:1
     depends_on:
       - db
     ports:
-      - "5000:5000"
+      - ${PORT}:${PORT}
     networks:
       - network
 

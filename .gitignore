@@ -1,4 +1,4 @@
 .temp/
 .idea/
 .vscode/
-.env.local
+.venv/

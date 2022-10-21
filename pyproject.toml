@@ -11,6 +11,7 @@ uvicorn = "^0.18.3"
 sqlalchemy = "^1.4.42"
 python-dotenv = "^0.21.0"
 psycopg2-binary = "^2.9.4"
+gunicorn = "^20.1.0"
 
 
 [build-system]

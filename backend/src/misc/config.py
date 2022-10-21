@@ -1,11 +1,6 @@
-import os
 from typing import Any, Dict, Optional
 
 from pydantic import BaseSettings, PostgresDsn, validator
-
-
-def get_dotenv_path():
-    return os.getenv("DOTENV_PATH")
 
 
 class Settings(BaseSettings):
@@ -29,9 +24,6 @@ class Settings(BaseSettings):
 
     DELAY: float
     NUMBER_OF_TICKERS: int
-
-    class Config:
-        env_file = get_dotenv_path()
 
 
 settings = Settings()
