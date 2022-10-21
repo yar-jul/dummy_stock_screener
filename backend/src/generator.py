@@ -1,11 +1,11 @@
 import time
-from datetime import datetime, timezone, timedelta
+from datetime import datetime
 from random import random
 
 from sqlalchemy import select
 
 from misc.config import settings
-from misc.db import init_db, get_session, ticker_table_list
+from misc.db import init_db, get_session, ticker_tables, timezone_info
 
 
 def generate_movement():
@@ -24,11 +24,10 @@ def get_current_price(last_price):
 
 def main() -> None:
     current_timestamp = int(time.time())
-    timezone_info = timezone(timedelta(hours=0))
     session = next(get_session())
 
     while True:
-        for ticker_table in ticker_table_list.values():
+        for ticker_table in ticker_tables.values():
             row = session.execute(select(ticker_table).order_by(ticker_table.id.desc())).first()
 
             if row is None:
