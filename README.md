@@ -25,4 +25,4 @@ make compose-restart
 ```
 
 Open API docs in your browser to <http://localhost:8000/docs>  
-Open WEB page in your browser to <http://localhost:5000>
+Open screener page in your browser to <http://localhost:5000>
