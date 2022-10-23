@@ -52,12 +52,13 @@ class DBService:
         self.session = session
 
     def get_prices_history_for_ticker(self, ticker: str,
-                                      limit: int | None,
+                                      get_all: bool,
+                                      limit: int,
                                       start: datetime | None,
                                       end: datetime | None):
         ticker_table = ticker_tables[ticker]
         history = {}
-        if limit is None:  # all
+        if get_all:  # all
             result = self.session.execute(select(ticker_table).order_by(ticker_table.id.asc()))
             for row in result:
                 history[row[0].date.isoformat()] = {"close": row[0].close}
