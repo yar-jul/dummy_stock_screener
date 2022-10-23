@@ -6,7 +6,6 @@ Example stock screener service.
 
 - [FastAPI](https://fastapi.tiangolo.com/) - The web framework for building APIs with Python.
 - [SQLAlchemy](https://www.sqlalchemy.org/) - The SQL Toolkit and ORM.
-- [Pytest](https://docs.pytest.org/en/7.1.x/) - The testing framework.
 - [Docker](https://docs.docker.com/) - The containerization platform.
 - [Nginx](https://nginx.org/) - The web server.
 - [Chart.js](https://www.chartjs.org/) - The JavaScript library for making HTML-based charts.
