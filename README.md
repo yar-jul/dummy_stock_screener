@@ -22,6 +22,7 @@ Example stock screener service.
 
 ```bash
 make compose-up
+make compose-restart
 ```
 
 Open API docs in your browser to <http://localhost:8000/docs>  
